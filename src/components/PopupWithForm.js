@@ -1,6 +1,10 @@
 function PopupWithForm(props) {
-    return (
-        <div className={`popup popup_${props.name}` + (props.isOpen && ' popup_active')}>
+  return (
+    <div
+      className={
+        `popup popup_${props.name}` + (props.isOpen && " popup_active")
+      }
+    >
       <form className="popup__container" name={props.name} noValidate>
         <button
           type="button"
@@ -10,12 +14,11 @@ function PopupWithForm(props) {
         <h2 className="popup__title">{props.title}</h2>
         {props.children}
         <button type="submit" className="popup__save popup__save-profile">
-        {props.submitname}
+          {props.submitname}
         </button>
       </form>
     </div>
-    )
-
+  );
 }
 
 // function PopupWithPopup() {
@@ -125,5 +128,5 @@ function PopupWithForm(props) {
 //     </>
 //     );
 //   }
-  
-  export default PopupWithForm;
+
+export default PopupWithForm;

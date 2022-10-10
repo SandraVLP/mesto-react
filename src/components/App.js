@@ -1,19 +1,18 @@
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
-import ImagePopup from './ImagePopup';
-import { useState } from 'react';
-import  api  from '../utils/Api.js';
-import Card from './Card';
-
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
+import { useState } from "react";
+import api from "../utils/Api.js";
+import Card from "./Card";
 
 function App() {
-  const [isEditProfilePopupOpen,setIsEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen,setisAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen,setisEditAvatarPopupOpen] = useState(false);
-  const [selectedCard,setSelectedCard] = useState(null);
-  function closeAllPopups () {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+  function closeAllPopups() {
     setisEditAvatarPopupOpen(false);
     setisAddPlacePopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -26,22 +25,22 @@ function App() {
 
   return (
     <div className="App">
-  <Header />
-    <Main 
-    onEditAvatar={() => setisEditAvatarPopupOpen(true)} 
-    onEditProfile ={() => setIsEditProfilePopupOpen(true)} 
-    onAddPlace={() => setisAddPlacePopupOpen(true)}
-    onCardClick={(selectedCard) => handleCardClick(selectedCard)} 
-     />
-    <Footer />
-    <PopupWithForm 
-    name='popup_edit' 
-    title='Редактировать профиль' 
-    submitname='Сохранить'
-    isOpen={isEditProfilePopupOpen}
-    onClose ={ () => closeAllPopups(true)} 
-    >
-    <fieldset className="popup__fieldset">
+      <Header />
+      <Main
+        onEditAvatar={() => setisEditAvatarPopupOpen(true)}
+        onEditProfile={() => setIsEditProfilePopupOpen(true)}
+        onAddPlace={() => setisAddPlacePopupOpen(true)}
+        onCardClick={(selectedCard) => handleCardClick(selectedCard)}
+      />
+      <Footer />
+      <PopupWithForm
+        name="popup_edit"
+        title="Редактировать профиль"
+        submitname="Сохранить"
+        isOpen={isEditProfilePopupOpen}
+        onClose={() => closeAllPopups(true)}
+      >
+        <fieldset className="popup__fieldset">
           <input
             type="text"
             name="name"
@@ -65,17 +64,17 @@ function App() {
             className="popup__profile popup__profile_subtitle popup__input"
             required
           />
-          </fieldset>
-    </PopupWithForm>
+        </fieldset>
+      </PopupWithForm>
 
-    <PopupWithForm 
-    name='popup_elements' 
-    title='Новое место' 
-    submitname='Создать'
-    isOpen={isAddPlacePopupOpen}
-    onClose ={ () => closeAllPopups(true)} 
-    >
-    <fieldset className="popup__fieldset">
+      <PopupWithForm
+        name="popup_elements"
+        title="Новое место"
+        submitname="Создать"
+        isOpen={isAddPlacePopupOpen}
+        onClose={() => closeAllPopups(true)}
+      >
+        <fieldset className="popup__fieldset">
           <input
             type="text"
             name="name"
@@ -99,16 +98,16 @@ function App() {
           />
           <span id="imglink-error" className="popup__input-error"></span>
         </fieldset>
-    </PopupWithForm>
+      </PopupWithForm>
 
-    <PopupWithForm 
-    name='popup_avatar' 
-    title='Обновить аватар' 
-    submitname='Сохранить'
-    isOpen={isEditAvatarPopupOpen}
-    onClose ={ () => closeAllPopups(true)} 
-    >
-   <fieldset className="popup__fieldset">
+      <PopupWithForm
+        name="popup_avatar"
+        title="Обновить аватар"
+        submitname="Сохранить"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={() => closeAllPopups(true)}
+      >
+        <fieldset className="popup__fieldset">
           <input
             type="url"
             name="link"
@@ -119,20 +118,15 @@ function App() {
           />
           <span id="avatarlink-error" className="popup__input-error"></span>
         </fieldset>
-    </PopupWithForm>
-{/* 
+      </PopupWithForm>
+      {/* 
     <PopupWithForm 
     name='popup_sure' 
     title='Обновить Вы уверены?' 
     submitname='Да'
     isOpen={}
     /> */}
-    <ImagePopup 
-    card={selectedCard}
-  
-    onClose ={ () => closeAllPopups(true)} 
-    />
-
+      <ImagePopup card={selectedCard} onClose={() => closeAllPopups(true)} />
     </div>
   );
 }
