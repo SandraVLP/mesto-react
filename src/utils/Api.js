@@ -19,7 +19,7 @@ class Api {
     );
   }
 
-  setCards(data) {
+  setNewCards(data) {
     return fetch(`${this._baseUrl}cards`, {
       method: "POST",
       headers: this._headers,
@@ -44,6 +44,16 @@ class Api {
       body: JSON.stringify({
         name: data.name,
         about: data.about,
+      }),
+    }).then(this._checkResponse);
+  }
+
+  setUserAvatar(data) {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
       }),
     }).then(this._checkResponse);
   }
@@ -77,6 +87,10 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
+  }
+
+  changeLikeCardStatus(cardId, isLiked) {
+    return isLiked ? this.deleteLike(cardId) : this.putLike(cardId)
   }
 
   // другие методы работы с API

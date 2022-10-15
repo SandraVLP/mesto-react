@@ -43,3 +43,5 @@
 @import url(./blocks/element/__likes/element__likes.css);
 @import url(./blocks/profile/__button-change/profile__button-change.css);
 @import url(./blocks/profile/__pencil/profile__pencil.css);
+@import url(./blocks/element/__basket/_hidden/element__basket_hidden.css);
+@import url(./blocks/element/__heart/_hidden/element__heart_hidden.css);

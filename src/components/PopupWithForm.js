@@ -5,7 +5,7 @@ function PopupWithForm(props) {
         `popup popup_${props.name}` + (props.isOpen && " popup_active")
       }
     >
-      <form className="popup__container" name={props.name} noValidate>
+      <form className="popup__container" name={props.name} noValidate onSubmit={props.onSubmit}>
         <button
           type="button"
           className="popup__close popup__close-profile"
