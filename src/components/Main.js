@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import api from "../utils/Api.js";
 import Card from "./Card";
 import pencil from "../images/pencil.svg";
-import { CurrentUserContext } from "../components/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
-
 
   return (
     <main>
@@ -40,7 +39,14 @@ function Main(props) {
       </section>
       <section className="cards">
         {props.cards.map((card) => (
-          <Card key={card._id} card={card} id={currentUser._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete}/>
+          <Card
+            key={card._id}
+            card={card}
+            id={currentUser._id}
+            onCardClick={props.onCardClick}
+            onCardLike={props.onCardLike}
+            onCardDelete={props.onCardDelete}
+          />
         ))}
       </section>
     </main>

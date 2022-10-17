@@ -6,7 +6,7 @@ import ImagePopup from "./ImagePopup";
 import React, { useState } from "react";
 import api from "../utils/Api.js";
 import Card from "./Card";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
@@ -16,7 +16,7 @@ function App() {
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
   const [cards, setCards] = useState([]);
   function closeAllPopups() {
     setisEditAvatarPopupOpen(false);
@@ -33,6 +33,9 @@ function App() {
     api.setProfileData(data).then((profile) => {
       setCurrentUser(profile);
       closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(`Ошибка; ${err}`);
     });
   }
 
@@ -40,6 +43,9 @@ function App() {
     api.setUserAvatar(data).then((profile) => {
       setCurrentUser(profile);
       closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(`Ошибка; ${err}`);
     });
   }
 
@@ -48,6 +54,9 @@ function App() {
     api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
       const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
       setCards(newCards);
+    })
+    .catch((err) => {
+      console.log(`Ошибка; ${err}`);
     });
   }
 
@@ -55,6 +64,9 @@ function App() {
     api.deleteCard(card._id).then(() => {
       const newCards = cards.filter((c) => (c._id !== card._id ? c : null));
       setCards(newCards);
+    })
+    .catch((err) => {
+      console.log(`Ошибка; ${err}`);
     });
   }
 
@@ -62,8 +74,10 @@ function App() {
     api.setNewCards(data).then((newCard) =>{
       setCards([newCard,...cards]);
       closeAllPopups();
-    }
-    )
+    })
+    .catch((err) => {
+      console.log(`Ошибка; ${err}`);
+    });
   }
 
   React.useEffect(() => {

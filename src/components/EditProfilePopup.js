@@ -1,5 +1,5 @@
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import React, { useState } from "react";
 
 
@@ -16,8 +16,8 @@ function EditProfilePopup(props) {
     // После загрузки текущего пользователя из API
     // его данные будут использованы в управляемых компонентах.
     React.useEffect(() => {
-      setName(currentUser.name);
-      setDescription(currentUser.about);
+      setName(currentUser?.name);
+      setDescription(currentUser?.about);
     }, [currentUser]);
 
     function handleChangeName(e) {

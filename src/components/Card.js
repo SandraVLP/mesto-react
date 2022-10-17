@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card(props) {
   function handleClick() {
