@@ -5,10 +5,6 @@ import React, { useState } from "react";
 
 
 function EditProfilePopup(props) {
-
-  
-    
-    // Подписка на контекст
     const currentUser = React.useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser?.name);
     const [description, setDescription] = useState(currentUser?.about);
@@ -19,6 +15,8 @@ function EditProfilePopup(props) {
       setName(currentUser?.name);
       setDescription(currentUser?.about);
     }, [currentUser]);
+
+
 
     function handleChangeName(e) {
         setName(e.target.value);
@@ -51,6 +49,7 @@ function EditProfilePopup(props) {
   >
     <fieldset className="popup__fieldset">
       <input
+      value={name ?? ""}
         type="text"
         name={name} onChange={handleChangeName}
         id="username"
@@ -64,6 +63,7 @@ function EditProfilePopup(props) {
     </fieldset>
     <fieldset className="popup__fieldset">
       <input
+      value={description ?? ""}
         type="text"
         name={description} onChange={handleChangeDescription}
         id="about"

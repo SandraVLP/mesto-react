@@ -29,6 +29,7 @@ function App() {
     setSelectedCard(selectedCard);
   }
 
+
   function handleUpdateUser(data) {
     api.setProfileData(data).then((profile) => {
       setCurrentUser(profile);
